@@ -1,0 +1,5 @@
+export * from './main.page'
+export * from './register.page'
+export * from './card.page'
+export * from './cart.page'
+export * from './checkout.page'

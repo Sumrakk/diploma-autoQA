@@ -1,0 +1,29 @@
+{
+  "name": "diploma-autoqa",
+  "version": "1.0.0",
+  "description": "Дипломный проект",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "testUI": "npx playwright test --headed",
+    "report": "npx playwright show-report",
+    "allureFile": "npx allure awesome ./allure-results --single-file"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sumrakk/diploma-autoQA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sumrakk/diploma-autoQA/issues"
+  },
+  "homepage": "https://github.com/Sumrakk/diploma-autoQA#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.3.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.0.10",
+    "allure-playwright": "^3.4.5"
+  }
+}
