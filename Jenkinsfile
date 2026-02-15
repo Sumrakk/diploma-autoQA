@@ -3,10 +3,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        nodejs('NodeJS2290') {
-          sh 'npm i'
+        nodejs('NodeJS22.22.0') {
+          sh 'npm ci'
           sh 'npx playwright install --with-deps'
-          sh 'npx playwright test || echo "Playwright tests completed with some failures"'
+          sh 'npm t'
         }
       }      
     }
