@@ -43,11 +43,11 @@ npm run allureFile
 ```
 
 ## Пример сформированного Allure отчёта
-![img.png](img/allure_testops_report_example.png)
+![img.png](media/allure_testops_report_example.png)
 
 ## Отчёт в ТестОпс
-[Ссылка на проект](https://allure.autotests.cloud/project/4995/launches)
-![img.png](img/allure_report_example.png)
+[Ссылка на проект](https://allure.autotests.cloud/project/5126/)
+![img.png](media/allure_report_example.png)
 
 ## Уведомления в Telegram
-![img.png](img/tg_report_example.png)
+![img.png](media/tg_report_example.png)
