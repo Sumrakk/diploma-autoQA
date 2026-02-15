@@ -1,4 +1,4 @@
-# Дипломный проект по итогам обучения на курсе QA.GURU | JS + Playwright QA.GURU | JS + Playwright | Автоматизация тестирования 5 поток
+# Дипломный проект Автоматизация тестирования 5 поток JS + Playwright 
 
 ## Содержание
 - [Описание](#Описание)
@@ -11,21 +11,21 @@
 
 
 ## Описание
-Данный дипломный проект разработан в рамках курса по автоматизации тестирования. Репозиторий содержит набор UI и API тестов, написанных на языке JavaScript с использованием фреймворка Playwright. В качестве системы непрерывной интеграции и доставки применён GitHub Actions, выполняющий автоматический запуск тестов, формирование отчетов Allure, интеграцию с ТестОпс и отправку уведомлений в Telegram.
+Данный дипломный проект разработан в рамках курса по автоматизации тестирования. Репозиторий содержит набор UI и API тестов, написанных на языке JavaScript с использованием фреймворка Playwright. В качестве системы непрерывной интеграции и доставки применён Jenkins, выполняющий автоматический запуск тестов, формирование отчетов Allure, интеграцию с ТестОпс и отправку уведомлений в Telegram.
 
 Объектами тестирования служат:
 
-**selectel.ru** — веб-сайт, для которого реализованы практические задания для автоматизации интерфейсных тестов.
+**realworld.qa.guru** — веб-приложение для практики UI тестирования.
 
-**api.nasa.gov/#browseAPI** — учебный сервис, предназначенный для освоения и отработки навыков тестирования API.
+**api.nasa.gov** — учебный сервис, предназначенный для освоения и отработки навыков тестирования API.
 
 ## Технологический стек
-<img src="img/javascript.png" title="JavaScript" width="50" height="50"/><img src="img/playwright.jpg" title="Playwrite" width="50" height="50"/><img src="img/git.svg" alt="Git" width="50" height="50"/><img src="img/github.png" title="GitHub" alt="GitHub" width="50" height="50"/><img src="img/allure framework.png" alt="Allure Framework" width="50" height="50"/><img src="img/testops.svg" alt="ТестОпс" width="45" height="45" /><img src="img/fakerjs.svg" alt="Fakerjs" width="50" height="50"/><img src="img/telegram.png" title="Telegram" width="50" height="50"/>
+<img src="media/javascript.png" title="JavaScript" width="50" height="50"/><img src="media/playwright.jpg" title="Playwrite" width="50" height="50"/><img src="media/git.svg" alt="Git" width="50" height="50"/><img src="media/github.png" title="GitHub" alt="GitHub" width="50" height="50"/><img src="media/allure framework.png" alt="Allure Framework" width="50" height="50"/><img src="media/testops.svg" alt="ТестОпс" width="45" height="45" /><img src="media/fakerjs.svg" alt="Fakerjs" width="50" height="50"/><img src="media/telegram.png" title="Telegram" width="50" height="50"/><img src="media/jenkins.png" title="JavaScript" width="50" height="50"/>
 
 ## Запуск тестов через Jenkins
-Для запуска тестов необходимо авторизоваться на GitHub и перейти в репозиторий проекта. Тесты запускаются автоматически при push в ветки main, а также при создании Pull Request. Для ручного запуска необходимо перейти во вкладку Actions, выбрать workflow E2E и нажать Run workflow.
+Для запуска тестов необходимо авторизоваться на Jenkins и перейти джобе 005-dushkovvs-diploma и выбрать Build now.
 
-После завершения выполнения тестов будет автоматически сформирован Allure-отчет, содержащий детальную информацию о результатах тестирования. Отчет сохраняется как артефакт сборки и доступен для скачивания в течение 30 дней.
+После завершения выполнения тестов будет автоматически сформирован Allure-отчет, содержащий детальную информацию о результатах тестирования.
 
 Результаты тестирования автоматически загружаются в ТестОпс для дальнейшего анализа и отслеживания метрик качества.
 
