@@ -14,10 +14,11 @@ export class NasaService {
     });
   }
 
-  async getEpic(date) {
-    return this.request.get(`${config.baseURL}/EPIC/api/natural/date/${date}`, {
+  async getEpic(params) {
+    return this.request.get(`${config.baseURL}/DONKI/GST`, {
       params: {
         api_key: config.apiKey,
+        ...params
       }
     });
   }
