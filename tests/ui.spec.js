@@ -67,7 +67,7 @@ test.describe('Тесты под авторизованным пользоват
         await mainPage.gotoFirstPost();
         await articlePage.editPostBut();
         await editorPage.editPost(post);
-        await expect(editorPage.titlePost).toContainText(post.title);
+        await expect(editorPage.checkTitle).toContainText(post.title);
         await expect(editorPage.checktextPost).toContainText(post.text);
     });
 

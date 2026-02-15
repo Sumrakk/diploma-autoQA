@@ -109,18 +109,3 @@ test.describe('NASA API', () => {
   });
 
 });
-
-const url = 'https://api.weatherstack.com/'
-test('Погода в Москве',async({request}) => {
-    let r = await request.get(`${url}current?query=Moscow&access_key=aa01471051fd0b295d1840eb941fa584`, {
-    });
-    const body = await r.json();
-    console.log(body);
-})
-test('Nasa',async({request}) => {
-    let r = await request.get('https://api.nasa.gov/planetary/apod?api_key=jNNPMTASWlUfQJxs7qXGYnJdk8BHzyPz0aOznaa4', {
-    });
-    console.log(r);
-    const body = await r.json();
-    console.log(body);
-})

@@ -9,6 +9,7 @@ export class EditorPage {
         this.updateButton = page.getByRole('button', { name: 'Update Article' });
         this.titlePost = page.getByRole('heading');
         this.checktextPost = page.getByRole('paragraph');
+        this.checkTitle = page.getByRole('heading');
     }
     //Бизнесовые действия со страницей
     async createPost(post){
