@@ -41,25 +41,47 @@ test.describe('NASA API', () => {
     expect(response.status()).toBe(400);
   });
 
-  test('EPIC - изображения за случайную дату)', async ({ request }) => {
+  test('GST - получить геомагнитные бури за случайный период', async ({ request }) => {
     const nasa = new NasaService(request);
 
-    const randomDate = faker.date
-      .between({ from: '2023-01-01', to: '2023-12-31' })
-      .toISOString()
-      .split('T')[0];
-      
-    const response = await nasa.getEpic(randomDate);
-    
-    console.log(response);
-    const body = await response.json();
-    console.log(body);
-    expect([200, 404]).toContain(response.status());
+    const startDateObj = faker.date.between({
+      from: '2025-01-01',
+      to: '2026-02-01'
+    });
 
-    if (response.status() === 200) {
-      const body = await response.json();
-      expect(Array.isArray(body)).toBe(true);
-    }
+    const endDateObj = faker.date.soon({ days: 100, refDate: startDateObj });
+
+    const startDate = startDateObj.toISOString().split('T')[0];
+    const endDate = endDateObj.toISOString().split('T')[0];
+
+
+    const response = await nasa.getEpic({
+      startDate,
+      endDate
+    });
+  
+    const body = await response.json();
+
+    expect(Array.isArray(body)).toBe(true);
+
+    body.forEach(event => {
+
+    //Проверка обязательных полей
+    expect(event).toHaveProperty('gstID');
+    expect(event).toHaveProperty('startTime');
+    expect(event).toHaveProperty('allKpIndex');
+    expect(event).toHaveProperty('link');
+    expect(event).toHaveProperty('linkedEvents');
+    expect(event).toHaveProperty('submissionTime');
+    expect(event).toHaveProperty('versionId');
+    expect(event).toHaveProperty('sentNotifications');
+    // Проверка диапазона дат
+    const eventDate = event.startTime.split('T')[0];
+    expect(eventDate >= startDate && eventDate <= endDate).toBeTruthy();
+    });
+
+    console.log(body);
+    console.log(startDate,endDate);
 });
 
   test('5. Астероиды за случайный диапазон дат (faker)', async ({ request }) => {
@@ -70,7 +92,7 @@ test.describe('NASA API', () => {
       to: '2023-12-01'
     });
 
-    const endDate = faker.date.soon({ days: 5, refDate: startDate });
+    const endDate = faker.date.soon({ days: 30, refDate: startDate });
 
     const start = startDate.toISOString().split('T')[0];
     const end = endDate.toISOString().split('T')[0];
