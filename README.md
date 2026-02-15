@@ -20,7 +20,7 @@
 **api.nasa.gov** — учебный сервис, предназначенный для освоения и отработки навыков тестирования API.
 
 ## Технологический стек
-<img src="media/javascript.png" title="JavaScript" width="50" height="50"/><img src="media/playwright.jpg" title="Playwrite" width="50" height="50"/><img src="media/git.svg" alt="Git" width="50" height="50"/><img src="media/github.png" title="GitHub" alt="GitHub" width="50" height="50"/><img src="media/allure framework.png" alt="Allure Framework" width="50" height="50"/><img src="media/testops.svg" alt="ТестОпс" width="45" height="45" /><img src="media/fakerjs.svg" alt="Fakerjs" width="50" height="50"/><img src="media/telegram.png" title="Telegram" width="50" height="50"/><img src="media/jenkins.png" title="JavaScript" width="50" height="50"/>
+<img src="media/javascript.png" title="JavaScript" width="50" height="50"/><img src="media/playwright.jpg" title="Playwrite" width="50" height="50"/><img src="media/git.svg" alt="Git" width="50" height="50"/><img src="media/github.png" title="GitHub" alt="GitHub" width="50" height="50"/><img src="media/allure framework.png" alt="Allure Framework" width="50" height="50"/><img src="media/testops.svg" alt="ТестОпс" width="45" height="45" /><img src="media/fakerjs.svg" alt="Fakerjs" width="50" height="50"/><img src="media/telegram.png" title="Telegram" width="50" height="50"/><img src="media/jenkins.png" title="Jenkins" width="50" height="60"/>
 
 ## Запуск тестов через Jenkins
 Для запуска тестов необходимо авторизоваться на Jenkins и перейти джобе 005-dushkovvs-diploma и выбрать Build now.
