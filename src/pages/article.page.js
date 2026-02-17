@@ -19,7 +19,6 @@ export class ArticlePage {
     }
     async deletePost (){
         this.page.on('dialog', dialog => {
-        console.log('Диалог:', dialog.message());
         dialog.accept();
         });
         await this.deleteButton.click();
