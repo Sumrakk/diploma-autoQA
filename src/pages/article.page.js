@@ -3,7 +3,7 @@ export class ArticlePage {
         //техническое описание страницы
         this.page = page;
         this.editButton = page.getByRole('button', { name: 'Edit Article' }).first();
-        this.deleteButton = page.getByRole('button', { name: 'Delete Article' }).first();;
+        this.deleteButton = page.getByRole('button', { name: 'Delete Article' }).first();
         this.textboxComment = page.getByRole('textbox', { name: 'Write a comment...' });
         this.commentButton = page.getByRole('button', { name: 'Post Comment' });
         this.commentTxt = page.getByRole('main');

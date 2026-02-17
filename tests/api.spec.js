@@ -9,7 +9,7 @@ test.describe('NASA API', () => {
 
     const response = await nasa.getApod();
     const body = await response.json();
-
+    console.log('NASA KEY:', process.env.NASA_API_KEY);
     expect(response.status()).toBe(200);
     expect(body).toHaveProperty('title');
     expect(body).toHaveProperty('url');

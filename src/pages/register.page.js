@@ -1,12 +1,8 @@
 import { test} from "@playwright/test";
-
+import dotenv from 'dotenv';
+dotenv.config();
 export class RegisterPage {
 
-	user = {
-		email: 'pw5@gmail.com',
-		password: 'pw5@gmail.com',
-	}
-	
     constructor(page) {
 		// техническое описание страницы
 		//todo нейминг
@@ -33,7 +29,7 @@ export class RegisterPage {
 	}
 
     // Авторизация
-    async login (email = this.user.email ,password = this.user.password) {
+    async login (email = process.env.EMAIL ,password = process.env.PASSWORD) {
         return test.step('Авторизация пользователем', async(step)=>{
         await this.emailInput.click();
 		await this.emailInput.fill(email);

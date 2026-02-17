@@ -8,7 +8,7 @@ export class NasaService {
   async getApod(params = {}) {
     return this.request.get(`${config.baseURL}/planetary/apod`, {
       params: {
-        api_key: config.apiKey,
+        api_key: process.env.NASA_API_KEY,
         ...params
       }
     });
@@ -17,7 +17,7 @@ export class NasaService {
   async getEpic(params) {
     return this.request.get(`${config.baseURL}/DONKI/GST`, {
       params: {
-        api_key: config.apiKey,
+        api_key: process.env.NASA_API_KEY,
         ...params
       }
     });
@@ -26,7 +26,7 @@ export class NasaService {
   async getAsteroids(params) {
     return this.request.get(`${config.baseURL}/neo/rest/v1/feed`, {
       params: {
-        api_key: config.apiKey,
+        api_key: process.env.NASA_API_KEY,
         ...params
       }
     });

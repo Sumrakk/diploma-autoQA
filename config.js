@@ -1,4 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
 export const config = {
   baseURL: 'https://api.nasa.gov',
-  apiKey: process.env.NASA_API_KEY || 'jNNPMTASWlUfQJxs7qXGYnJdk8BHzyPz0aOznaa4'
+  apiKey: process.env.NASA_API_KEY
 };

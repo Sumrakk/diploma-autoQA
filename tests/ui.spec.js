@@ -3,11 +3,9 @@ import { test, expect } from "@playwright/test";
 import { MainPage, RegisterPage, ProfilePage, EditorPage, ArticlePage} from "../src/pages/index";
 import { faker } from "@faker-js/faker";
 
-const URL = 'https://realworld.qa.guru/#/';
-
 test.describe('Тесты под авторизованным пользователем',() => {
     test.beforeEach(async({page}) => {
-        await page.goto(URL);
+        await page.goto('/');
         
         const mainPage = new MainPage(page);
         const registerPage = new RegisterPage(page);
