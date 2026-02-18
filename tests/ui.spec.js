@@ -1,72 +1,59 @@
 import { test, expect } from "@playwright/test";
-
-import { MainPage, RegisterPage, ProfilePage, EditorPage, ArticlePage} from "../src/pages/index";
-import { faker } from "@faker-js/faker";
+import { UserBuilder,PostBuilder } from '../src/builders/index';
+import { App } from '../src/pages/app.page';
 
 test.describe('Тесты под авторизованным пользователем',() => {
     test.beforeEach(async({page}) => {
         await page.goto('/');
         
-        const mainPage = new MainPage(page);
-        const registerPage = new RegisterPage(page);
+        const app = new App(page);
 
-        await mainPage.gotoLogin();
-        await registerPage.login();
+        await app.mainPage.gotoLogin();
+        await app.registerPage.login();
     });
 
     test ('Создание статьи авторизованным пользователем', async({
         page,
     }) => {
-        const post = {
-            title:faker.word.words(2),
-            description:faker.internet.emoji(),
-            text:faker.word.words(15),
-            tags:faker.word.words(1)
-        };
+        const post = new PostBuilder().withTitle().withDescription().withText().withTags().build();
 
-        const mainPage = new MainPage(page);
-        const editorPage = new EditorPage(page);
+        const app = new App(page);
 
-        await mainPage.gotoCreatePost();
-        await editorPage.createPost(post);
-        await expect(editorPage.titlePost).toContainText(post.title);
-        await expect(editorPage.checktextPost).toContainText(post.text);
+        await app.mainPage.gotoCreatePost();
+        await app.editorPage.createPost(post);
+        await expect(app.editorPage.titlePost).toContainText(post.title);
+        await expect(app.editorPage.checktextPost).toContainText(post.text);
     });
 
     test ('Добавление комментария на первую статью', async({
         page,
     }) => {
-        const comment = faker.word.words(1)
+        const post = new PostBuilder().withComment().build();
         
         const mainPage = new MainPage(page);
         const articlePage = new ArticlePage(page);
 
-        await mainPage.gotoGlobalPosts();
-        await mainPage.gotoFirstPost();
-        await articlePage.createComment(comment);
-        await expect(articlePage.commentTxt).toContainText(comment);
+        await app.mainPage.gotoGlobalPosts();
+        await app.mainPage.gotoFirstPost();
+        await app.articlePage.createComment(post.comment);
+        await expect(app.articlePage.commentTxt).toContainText(post.comment);
     });
 
     test ('Редактирование собственной статьи', async({
         page,
     }) => {
-        const post = {
-            title:faker.word.words(1),
-            description:faker.internet.emoji(),
-            text:faker.word.words(15),
-            tags:faker.word.words(1)
-        };
-
+        const post = new PostBuilder().withTitle().withDescription().withText().withTags().build();
+        
         const mainPage = new MainPage(page);
         const editorPage = new EditorPage(page);
         const articlePage = new ArticlePage(page);
 
-        await mainPage.gotoProfile();
-        await mainPage.gotoFirstPost();
-        await articlePage.editPostBut();
-        await editorPage.editPost(post);
-        await expect(editorPage.checkTitle).toContainText(post.title);
-        await expect(editorPage.checktextPost).toContainText(post.text);
+        await app.mainPage.gotoProfile();
+        await app.mainPage.gotoFirstPost();
+        await app.articlePage.editPostBut();
+        await app.editorPage.editPost(post);
+        await expect(app.editorPage.checkTitle).toContainText(post.title);
+        await expect(app.editorPage.checktextPost).toContainText(post.text);
     });
 
     test('Удаление собственной статьи', async({
@@ -76,37 +63,30 @@ test.describe('Тесты под авторизованным пользоват
         const mainPage = new MainPage(page);
         const articlePage = new ArticlePage(page);
 
-        await mainPage.gotoProfile();
-        await mainPage.gotoFirstPost();
-        await articlePage.deletePost();
-        await expect(page).toHaveURL(URL);
+        await app.mainPage.gotoProfile();
+        await app.mainPage.gotoFirstPost();
+        await app.articlePage.deletePost();
+        await expect(page).toHaveURL('/');
     });
 
 });
 test ('Регистрация нового пользователя и редактирование информации пользователя через настройки профиля', async({
         page,
     }) => {
+        const user = new UserBuilder().withName().withEmail().withPassword().build();
+
         const mainPage = new MainPage(page);
         const registerPage = new RegisterPage(page);
-        
-        const user = { 
-            name:faker.internet.displayName(),
-            email:faker.internet.email(),
-            password: faker.internet.password()
-        };
-        const userEdit = { 
-            photoURL:faker.image.avatar(),
-            name:faker.internet.displayName(),
-            bio:faker.word.words(15),
-            password: faker.internet.password()
-        };
         // Регистрация нового пользователя
-        await page.goto(URL);
-        await mainPage.gotoRegister();
-        await registerPage.register(user);
-        // Переход и редактирование пользовательской информации
-        await mainPage.gotoProfile();
-        await mainPage.gotoProfileSettings();
-        await registerPage.updateProfile(userEdit);
-        await expect(mainPage.userName).toContainText(userEdit.name);
+        await page.goto('/');
+        await app.mainPage.gotoRegister();
+        await app.registerPage.register(user);
+        // Переход к пользовательским настройкм
+        await app.mainPage.gotoProfile();
+        await app.mainPage.gotoProfileSettings();
+        // Генерим данные для изменения
+        const userEdit = new UserBuilder().withPhoto().withName().withBio().withPassword().build();
+        // Редактирование пользовательской информации
+        await app.registerPage.updateProfile(userEdit);
+        await expect(app.mainPage.userName).toContainText(userEdit.name);
     });
