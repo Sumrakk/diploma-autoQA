@@ -1,23 +1,20 @@
-import { test, expect } from "@playwright/test";
+import { expect } from "@playwright/test";
+import { test } from '../src/fixtures/fixture';
 import { UserBuilder,PostBuilder } from '../src/builders/index';
-import { App } from '../src/pages/app.page';
+
 
 test.describe('Тесты под авторизованным пользователем',() => {
-    test.beforeEach(async({page}) => {
+    test.beforeEach(async({page,app}) => {
         await page.goto('/');
         
-        const app = new App(page);
-
         await app.mainPage.gotoLogin();
         await app.registerPage.login();
     });
 
     test ('Создание статьи авторизованным пользователем', async({
-        page,
+        app,
     }) => {
         const post = new PostBuilder().withTitle().withDescription().withText().withTags().build();
-
-        const app = new App(page);
 
         await app.mainPage.gotoCreatePost();
         await app.editorPage.createPost(post);
@@ -26,12 +23,9 @@ test.describe('Тесты под авторизованным пользоват
     });
 
     test ('Добавление комментария на первую статью', async({
-        page,
+        app,
     }) => {
         const post = new PostBuilder().withComment().build();
-        
-        const mainPage = new MainPage(page);
-        const articlePage = new ArticlePage(page);
 
         await app.mainPage.gotoGlobalPosts();
         await app.mainPage.gotoFirstPost();
@@ -40,14 +34,10 @@ test.describe('Тесты под авторизованным пользоват
     });
 
     test ('Редактирование собственной статьи', async({
-        page,
+        app,
     }) => {
         const post = new PostBuilder().withTitle().withDescription().withText().withTags().build();
-        
-        const mainPage = new MainPage(page);
-        const editorPage = new EditorPage(page);
-        const articlePage = new ArticlePage(page);
-
+ 
         await app.mainPage.gotoProfile();
         await app.mainPage.gotoFirstPost();
         await app.articlePage.editPostBut();
@@ -57,11 +47,8 @@ test.describe('Тесты под авторизованным пользоват
     });
 
     test('Удаление собственной статьи', async({
-        page,
+        app,page
     }) => {
-
-        const mainPage = new MainPage(page);
-        const articlePage = new ArticlePage(page);
 
         await app.mainPage.gotoProfile();
         await app.mainPage.gotoFirstPost();
@@ -71,16 +58,10 @@ test.describe('Тесты под авторизованным пользоват
 
 });
 test ('Регистрация нового пользователя и редактирование информации пользователя через настройки профиля', async({
-        page,
+        registredUser
     }) => {
-        const user = new UserBuilder().withName().withEmail().withPassword().build();
-
-        const mainPage = new MainPage(page);
-        const registerPage = new RegisterPage(page);
-        // Регистрация нового пользователя
-        await page.goto('/');
-        await app.mainPage.gotoRegister();
-        await app.registerPage.register(user);
+        const { app } = registredUser;
+        const { user } = registredUser;
         // Переход к пользовательским настройкм
         await app.mainPage.gotoProfile();
         await app.mainPage.gotoProfileSettings();
