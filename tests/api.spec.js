@@ -25,7 +25,7 @@ test.describe('NASA API', () => {
     expect(body.date).toBe(randomDate.date);
   });
 
-  test('3. APOD с невалидной датой (faker, негативный)', async ({ nasa }) => {
+  test('3. APOD с невалидной датой (негативный)', async ({ nasa }) => {
 
     const invalidDate = new DateBuilder().invalidDate().build();
 
@@ -59,7 +59,7 @@ test.describe('NASA API', () => {
     });
   });
 
-  test('5. Астероиды за случайный диапазон дат (faker)', async ({ nasa }) => {
+  test('5. Астероиды за случайный диапазон дат', async ({ nasa }) => {
     const dates = new DateBuilder().startDate().endDate().build();
 
     const response = await nasa.getAsteroids({
