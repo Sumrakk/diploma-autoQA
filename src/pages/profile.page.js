@@ -1,3 +1,4 @@
+import { test } from '@playwright/test';
 export class ProfilePage {
 	constructor(page) {
         this.profilePicture = page.getByRole('textbox', { name: 'URL of profile picture' })

@@ -1,3 +1,4 @@
+import { test } from '@playwright/test';
 export class ArticlePage {
     constructor(page){ 
         //техническое описание страницы

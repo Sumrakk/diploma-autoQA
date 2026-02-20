@@ -1,7 +1,7 @@
-import { config } from '../../config.js';
+import { test } from '@playwright/test';
 
 export class NasaService {
-  constructor(request) {
+  constructor(request,baseURL) {
     this.request = request;
     this.baseURL = baseURL;
   }
