@@ -18,6 +18,7 @@ export class RegisterPage {
 	}
 	// Регистрация
 	async register(user) {
+		return await test.step('Регистрация нового пользователя', async () => {
 		const { name, email, password } = user;
 		await this.nameInput.click();
 		await this.nameInput.fill(name);
@@ -26,7 +27,9 @@ export class RegisterPage {
 		await this.passwordInput.click();
 		await this.passwordInput.fill(password);
 		await this.signupButton.click();
-	}
+	});
+    }
+
 
     // Авторизация
     async login (email = process.env.EMAIL ,password = process.env.PASSWORD) {
@@ -36,20 +39,22 @@ export class RegisterPage {
 		await this.passwordInput.click();
 		await this.passwordInput.fill(password);
 		await this.loginButton.click();
-	})
+	});
     }
 	
     // Редактирование профиля пользователя
 	async updateProfile(userEdit) {
-		const { photoURL, name, bio, password } = userEdit;
-        await this.profilePicture.click();
-        await this.profilePicture.fill(photoURL);
-		await this.nameInput.click();
-		await this.nameInput.fill(name);
-        await this.bioInput.click();
-        await this.bioInput.fill(bio);
-		await this.passwordInput.click();
-		await this.passwordInput.fill(password);
-		await this.updateButton.click();
+		return await test.step('Редактирование пользовательской информации', async () => {
+			const { photoURL, name, bio, password } = userEdit;
+			await this.profilePicture.click();
+			await this.profilePicture.fill(photoURL);
+			await this.nameInput.click();
+			await this.nameInput.fill(name);
+			await this.bioInput.click();
+			await this.bioInput.fill(bio);
+			await this.passwordInput.click();
+			await this.passwordInput.fill(password);
+			await this.updateButton.click();
+		});
 	}
 }

@@ -9,13 +9,15 @@ export class ProfilePage {
 		
 	}
 	async update(user) {
-		const { photoURL, name, bio } = user;
-        await this.profilePicture.click();
-        await this.profilePicture.fill(photoURL);
-		await this.nameInput.click();
-		await this.nameInput.fill(name);
-        await this.bioInput.click();
-        await this.bioInput.fill(bio);
-		await this.updateButton.click();
+		return await test.step('Редактирование пользовательской информации', async () => {
+			const { photoURL, name, bio } = user;
+			await this.profilePicture.click();
+			await this.profilePicture.fill(photoURL);
+			await this.nameInput.click();
+			await this.nameInput.fill(name);
+			await this.bioInput.click();
+			await this.bioInput.fill(bio);
+			await this.updateButton.click();
+		});
 	}
 }

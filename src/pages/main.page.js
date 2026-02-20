@@ -8,8 +8,8 @@ export class MainPage {
         this.profileLogout = page.getByRole('link', { name: 'Logout' });
         this.createPost = page.getByRole('link', { name: 'New Article' });
         this.globalLink =  page.getByRole('button', { name: 'Global Feed' });
-        this.firstPost =  page.locator('.preview-link').first();
-        this.togleProfile = page.locator('.nav-item.dropdown .dropdown-toggle');
+        this.firstPost =  page.getByRole('link').filter({ hasText: /./ }).first();
+        this.toggleProfile = page.getByRole('button', { name: /profile|settings/i}).or(page.locator('[aria-haspopup="true"]'));
         this.sourceCode = page.getByRole('navigation').getByRole('link', { name: ' Source code' });
         this.userName = page.getByRole('navigation');
     }
@@ -21,15 +21,15 @@ export class MainPage {
         await this.loginLink.click();
     }
     async gotoProfile(){
-        await this.togleProfile.click();
+        await this.toggleProfile.click();
         await this.profileLink.click();
     }
     async gotoProfileSettings(){
-        await this.togleProfile.click();
+        await this.toggleProfile.click();
         await this.profileSettings.click();
     }
     async gotoProfileLogout (){
-        await this.togleProfile.click();
+        await this.toggleProfile.click();
         await this.profileLogout.click();
     }
     async gotoCreatePost (){

@@ -13,27 +13,31 @@ export class EditorPage {
     }
     //Бизнесовые действия со страницей
     async createPost(post){
-        const {title,description,text,tags} = post;
-        await this.articleTitle.click();
-        await this.articleTitle.fill(title);
-        await this.descriptionPost.click();
-        await this.descriptionPost.fill(description);
-        await this.textPost.click();
-        await this.textPost.fill(text);
-        await this.tagsPost.click();
-        await this.tagsPost.fill(tags);
-        await this.publishButton.click();
+        return await test.step('Создать статью', async () => {
+            const {title,description,text,tags} = post;
+            await this.articleTitle.click();
+            await this.articleTitle.fill(title);
+            await this.descriptionPost.click();
+            await this.descriptionPost.fill(description);
+            await this.textPost.click();
+            await this.textPost.fill(text);
+            await this.tagsPost.click();
+            await this.tagsPost.fill(tags);
+            await this.publishButton.click();
+        });
     }
     async editPost (post){
-       const {title,description,text,tags} = post;
-        await this.articleTitle.click();
-        await this.articleTitle.fill(title);
-        await this.descriptionPost.click();
-        await this.descriptionPost.fill(description);
-        await this.textPost.click();
-        await this.textPost.fill(text);
-        await this.tagsPost.click();
-        await this.tagsPost.fill(tags);
-        await this.updateButton.click(); 
+        return await test.step('Отредактировать статью', async () => {
+            const {title,description,text,tags} = post;
+            await this.articleTitle.click();
+            await this.articleTitle.fill(title);
+            await this.descriptionPost.click();
+            await this.descriptionPost.fill(description);
+            await this.textPost.click();
+            await this.textPost.fill(text);
+            await this.tagsPost.click();
+            await this.tagsPost.fill(tags);
+            await this.updateButton.click(); 
+        });
     }
 }

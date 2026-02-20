@@ -10,17 +10,23 @@ export class ArticlePage {
     }
     //Бизнесовые действия со страницей
     async createComment(comment = 'NICE!'){
-        await this.textboxComment.click();
-        await this.textboxComment.fill(comment);
-        await this.commentButton.click();
+        return await test.step('Добавить комментарий', async () => {
+            await this.textboxComment.click();
+            await this.textboxComment.fill(comment);
+            await this.commentButton.click();
+        });
     }
     async editPostBut (){
-        await this.editButton.click();
+        return await test.step('Клик на кнопку Edit', async () => {
+            await this.editButton.click();
+        });
     }
     async deletePost (){
-        this.page.on('dialog', dialog => {
-        dialog.accept();
+        return await test.step('Удалить статью', async () => {
+            this.page.on('dialog', dialog => {
+            dialog.accept();
+            });
+            await this.deleteButton.click();
         });
-        await this.deleteButton.click();
     }
 }

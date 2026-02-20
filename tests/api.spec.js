@@ -16,9 +16,9 @@ test.describe('NASA API', () => {
 
   test('2. APOD с рандомной датой', async ({ nasa }) => {
     
-    const random = new DateBuilder().randomDate().build();
+    const randomDate = new DateBuilder().randomDate().build();
 
-    const response = await nasa.getApod({ date: random.date });
+    const response = await nasa.getApod({ date: randomDate.date });
     const body = await response.json();
 
     expect(response.status()).toBe(200);

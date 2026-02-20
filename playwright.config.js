@@ -36,10 +36,20 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+      {
+        name: 'chromium',
+        use: { ... devices['Desktop Chrome'], baseURL:
+        'https://realworld.qa.guru/' },
+      },
+      {
+        name: 'api',
+        testMatch: '**/api.spec.js',
+        use: {
+        baseURL: process.env.API_BASE_URL || 'https://api.nasa.gov',
+      },
+      },
+
+
 /*
     {
       name: 'firefox',
